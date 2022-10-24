@@ -1,12 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Login() {
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const [buttonDisabled, setButtonDisabled] = useState(true);
 
-  // Só pro lint parar de reclamar.
-  console.log(setButtonDisabled);
+  // Fonte: https://pt.stackoverflow.com/a/276022
+  const validateEmail = (email) => /^[\w+.]+@\w+\.\w{2,}(?:\.\w{2})?$/.test(email);
+
+  useEffect(() => {
+    const validateLogin = () => {
+      const minCharacters = 6;
+      const passwordIsValid = userPassword.length > minCharacters;
+      const emailIsValid = validateEmail(userEmail);
+      if (emailIsValid && passwordIsValid) {
+        setButtonDisabled(false);
+      } else {
+        setButtonDisabled(true);
+      }
+    };
+    validateLogin();
+  }, [userEmail, userPassword]);
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -18,7 +32,7 @@ function Login() {
       setUserPassword(value);
       break;
     default:
-      return true;
+      //
     }
   };
 
