@@ -36,6 +36,10 @@ function Login() {
     }
   };
 
+  const handleClick = () => {
+    localStorage.setItem('user', JSON.stringify({ email: userEmail }));
+  };
+
   return (
     <div>
       <input
@@ -58,6 +62,7 @@ function Login() {
         type="button"
         data-testid="login-submit-btn"
         disabled={ buttonDisabled }
+        onClick={ handleClick }
       >
         Enter
       </button>
