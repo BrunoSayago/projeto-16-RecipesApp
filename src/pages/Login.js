@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-function Login() {
+function Login(props) {
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -24,20 +25,17 @@ function Login() {
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
-    switch (name) {
-    case 'emailInput':
+    if (name === 'emailInput') {
       setUserEmail(value);
-      break;
-    case 'passwordInput':
+    } else {
       setUserPassword(value);
-      break;
-    default:
-      //
     }
   };
 
   const handleClick = () => {
     localStorage.setItem('user', JSON.stringify({ email: userEmail }));
+    const { history } = props;
+    history.push('/meals');
   };
 
   return (
@@ -69,5 +67,11 @@ function Login() {
     </div>
   );
 }
+
+Login.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default Login;
