@@ -10,7 +10,7 @@ function Profile() {
     localStorage.setItem('user', JSON.stringify(temp));
     const text = localStorage.getItem('user');
     const email = JSON.parse(text);
-    if (email !== null) { return email.email; }
+    return email.email;
   };
 
   return (
