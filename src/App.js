@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
@@ -8,7 +9,6 @@ import RecipeInProgress from './pages/RecipeInProgress';
 import RecipeDetails from './pages/RecipeDetails';
 import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
-// iniciando projeto
 
 function App() {
   return (
