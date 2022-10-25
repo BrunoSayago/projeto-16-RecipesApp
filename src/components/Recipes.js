@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 function Recipes() {
   const [listaReceitas, setListaReceitas] = useState([]);
@@ -75,35 +75,6 @@ function Recipes() {
 
   return (
     <div>
-      {
-        listaReceitas.map((receita, index) => {
-          const objNomes = pathname === '/meals' ? {
-            id: 'idMeal',
-            nome: 'strMeal',
-            imagem: 'strMealThumb',
-          } : {
-            id: 'idDrink',
-            nome: 'strDrink',
-            imagem: 'strDrinkThumb',
-          };
-          return (
-            <div
-              key={ receita[objNomes.id] }
-              data-testid={ `${index}-recipe-card` }
-            >
-
-              <p data-testid={ `${index}-card-name` }>{receita[objNomes.nome]}</p>
-              <img
-                data-testid={ `${index}-card-img` }
-                className="card-img"
-                src={ receita[objNomes.imagem] }
-                alt={ `${receita.strMeal} imagem` }
-              />
-
-            </div>
-          );
-        })
-      }
       <div>
         {
           listaCategorias.map((categoria) => (
@@ -140,15 +111,24 @@ function Recipes() {
                 imagem: 'strDrinkThumb',
               };
               return (
-                <div data-testid={ `${index}-recipe-card` } key={ receita[objNomes.id] }>
-                  <p data-testid={ `${index}-card-name` }>{receita[objNomes.nome]}</p>
-                  <img
-                    data-testid={ `${index}-card-img` }
-                    className="card-img"
-                    src={ receita[objNomes.imagem] }
-                    alt={ `${receita.strMeal} imagem` }
-                  />
-                </div>
+                <Link
+                  key={ receita[objNomes.id] }
+                  to={ `${pathname}/${receita[objNomes.id]}` }
+                >
+                  <div
+                    data-testid={ `${index}-recipe-card` }
+
+                  >
+
+                    <p data-testid={ `${index}-card-name` }>{receita[objNomes.nome]}</p>
+                    <img
+                      data-testid={ `${index}-card-img` }
+                      className="card-img"
+                      src={ receita[objNomes.imagem] }
+                      alt={ `${receita.strMeal} imagem` }
+                    />
+                  </div>
+                </Link>
               );
             })
         }
