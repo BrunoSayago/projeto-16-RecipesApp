@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 function Recipes() {
   const [listaReceitas, setListaReceitas] = useState([]);
   const [listaCategorias, setListaCategorias] = useState([]);
+  const [categoriaEscolhida, setCategoriaEscolhida] = useState('');
   const [categoriaFiltrada, setCategoriaFiltrada] = useState('');
 
   const END_POINT_COMIDA = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
@@ -41,21 +42,34 @@ function Recipes() {
     fetchCategorias();
   }, [pathname]);
 
+  useEffect(() => {
+    if (categoriaEscolhida) {
+      const fetchFiltered = async () => {
+        const END_POINT = pathname === '/meals'
+          ? `https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoriaEscolhida}` : `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${categoriaEscolhida}`;
+        const data = await fetch(END_POINT);
+        const results = await data.json();
+        const { meals, drinks } = results;
+        const tipo = meals || drinks;
+        const MAX_POSITION = 12;
+        setCategoriaFiltrada(tipo.slice(0, MAX_POSITION));
+      };
+      fetchFiltered();
+    } else {
+      setCategoriaFiltrada('');
+    }
+  }, [categoriaEscolhida, pathname]);
+
   const handleFilterCategory = (event) => {
-    const fetchFiltered = async () => {
-      const END_POINT = pathname === '/meals'
-        ? `https://www.themealdb.com/api/json/v1/1/filter.php?c=${event.target.innerText}` : `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${event.target.innerText}`;
-      const data = await fetch(END_POINT);
-      const results = await data.json();
-      const { meals, drinks } = results;
-      const tipo = meals || drinks;
-      const MAX_POSITION = 12;
-      setCategoriaFiltrada(tipo.slice(0, MAX_POSITION));
-    };
-    fetchFiltered();
+    if (categoriaEscolhida === event.target.innerText) {
+      setCategoriaEscolhida('');
+    } else {
+      setCategoriaEscolhida(event.target.innerText);
+    }
   };
 
   const handleAllButton = () => {
+    setCategoriaEscolhida('');
     setCategoriaFiltrada('');
   };
 
