@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 function Recipes() {
   const [listaReceitas, setListaReceitas] = useState([]);
@@ -87,24 +87,20 @@ function Recipes() {
             imagem: 'strDrinkThumb',
           };
           return (
-            <Link
+            <div
               key={ receita[objNomes.id] }
-              to={ `${pathname}/${receita[objNomes.id]}` }
+              data-testid={ `${index}-recipe-card` }
             >
-              <div
-                data-testid={ `${index}-recipe-card` }
 
-              >
+              <p data-testid={ `${index}-card-name` }>{receita[objNomes.nome]}</p>
+              <img
+                data-testid={ `${index}-card-img` }
+                className="card-img"
+                src={ receita[objNomes.imagem] }
+                alt={ `${receita.strMeal} imagem` }
+              />
 
-                <p data-testid={ `${index}-card-name` }>{receita[objNomes.nome]}</p>
-                <img
-                  data-testid={ `${index}-card-img` }
-                  className="card-img"
-                  src={ receita[objNomes.imagem] }
-                  alt={ `${receita.strMeal} imagem` }
-                />
-              </div>
-            </Link>
+            </div>
           );
         })
       }
