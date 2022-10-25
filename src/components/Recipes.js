@@ -59,11 +59,15 @@ function Recipes() {
             imagem: 'strDrinkThumb',
           };
           return (
-            <div key={ receita[objNomes.id] }>
-              <Link
+            <Link
+              key={ receita[objNomes.id] }
+              to={ `${pathname}/${receita[objNomes.id]}` }
+            >
+              <div
                 data-testid={ `${index}-recipe-card` }
-                to={ `${pathname}/${receita[objNomes.id]}` }
+
               >
+
                 <p data-testid={ `${index}-card-name` }>{receita[objNomes.nome]}</p>
                 <img
                   data-testid={ `${index}-card-img` }
@@ -71,8 +75,8 @@ function Recipes() {
                   src={ receita[objNomes.imagem] }
                   alt={ `${receita.strMeal} imagem` }
                 />
-              </Link>
-            </div>
+              </div>
+            </Link>
           );
         })
       }
