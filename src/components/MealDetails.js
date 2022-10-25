@@ -11,6 +11,11 @@ function MealDetails(props) {
     strYoutube,
   } = data;
 
+  let videoUrl = '';
+  if (strYoutube) {
+    videoUrl = strYoutube.replace(/https:\/\/www\.youtube\.com\/watch\?v=/, 'https://www.youtube.com/embed/');
+  }
+
   const ingredients = [];
 
   const getIngredients = () => {
@@ -34,6 +39,7 @@ function MealDetails(props) {
         data-testid="recipe-photo"
         src={ strMealThumb }
         alt={ strMeal }
+        width="100%"
       />
       <h1 data-testid="recipe-title">{ strMeal }</h1>
       <p data-testid="recipe-category">{ strCategory }</p>
@@ -49,6 +55,15 @@ function MealDetails(props) {
       </ul>
       <p data-testid="instructions">{ strInstructions }</p>
       <p data-testid="video">{ strYoutube }</p>
+      <iframe
+        width="320"
+        height="210"
+        src={ videoUrl }
+        title="YouTube video player"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
+        allowFullScreen
+      />
     </div>
   );
 }

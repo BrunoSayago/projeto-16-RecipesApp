@@ -29,7 +29,6 @@ function RecipeDetails(props) {
     fetchDetails(id);
   }, [id, history.location.pathname]);
 
-  console.log(recipeDetails);
   return (
     <div>
       {

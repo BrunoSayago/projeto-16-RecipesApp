@@ -33,6 +33,7 @@ function DrinkDetails(props) {
         data-testid="recipe-photo"
         src={ strDrinkThumb }
         alt={ strDrink }
+        width="100%"
       />
       <h1 data-testid="recipe-title">{ strDrink }</h1>
       <p data-testid="recipe-category">{ strAlcoholic }</p>
