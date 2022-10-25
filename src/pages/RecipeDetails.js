@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import DrinkDetails from '../components/DrinkDetails';
+import MealDetails from '../components/MealDetails';
 // import { useHistory } from 'react-router-dom';
 
 function RecipeDetails(props) {
@@ -18,7 +20,11 @@ function RecipeDetails(props) {
       }
       const result = await fetch(ENDPOINT);
       const data = await result.json();
-      setRecipeDetails(data);
+      if (history.location.pathname.includes('/meals')) {
+        setRecipeDetails(data.meals[0]);
+      } else {
+        setRecipeDetails(data.drinks[0]);
+      }
     };
     fetchDetails(id);
   }, [id, history.location.pathname]);
@@ -26,7 +32,11 @@ function RecipeDetails(props) {
   console.log(recipeDetails);
   return (
     <div>
-      <h1>{ id }</h1>
+      {
+        history.location.pathname.includes('/meals')
+          ? <MealDetails data={ recipeDetails } />
+          : <DrinkDetails data={ recipeDetails } />
+      }
     </div>
   );
 }
