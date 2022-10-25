@@ -42,7 +42,21 @@ function Recipes() {
   }, [pathname]);
 
   const handleFilterCategory = (event) => {
-    setCategoriaFiltrada(event.target.innerText);
+    const fetchFiltered = async () => {
+      const END_POINT = pathname === '/meals'
+        ? `https://www.themealdb.com/api/json/v1/1/filter.php?c=${event.target.innerText}` : `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${event.target.innerText}`;
+      const data = await fetch(END_POINT);
+      const results = await data.json();
+      const { meals, drinks } = results;
+      const tipo = meals || drinks;
+      const MAX_POSITION = 12;
+      setCategoriaFiltrada(tipo.slice(0, MAX_POSITION));
+    };
+    fetchFiltered();
+  };
+
+  const handleAllButton = () => {
+    setCategoriaFiltrada('');
   };
 
   return (
@@ -60,12 +74,18 @@ function Recipes() {
             </button>
           ))
         }
+        <button
+          type="button"
+          data-testid="All-category-filter"
+          onClick={ handleAllButton }
+        >
+          All
+        </button>
       </div>
 
       <div>
         {
-          listaReceitas
-            .filter((receita) => receita.strCategory.includes(categoriaFiltrada))
+          (categoriaFiltrada || listaReceitas)
             .map((receita, index) => {
               const objNomes = pathname === '/meals' ? {
                 id: 'idMeal',
