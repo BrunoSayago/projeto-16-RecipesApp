@@ -55,6 +55,13 @@ function RecipeDetails(props) {
           ? <MealDetails data={ recipeDetails } recommendations={ recommendations } />
           : <DrinkDetails data={ recipeDetails } recommendations={ recommendations } />
       }
+      <button
+        type="button"
+        className="start-recipe-btn"
+        data-testid="start-recipe-btn"
+      >
+        Start Recipe
+      </button>
     </div>
   );
 }
