@@ -8,6 +8,7 @@ import MealDetails from '../components/MealDetails';
 function RecipeDetails(props) {
   const { id } = useParams();
   const [recipeDetails, setRecipeDetails] = useState({});
+  const [recommendations, setRecommendations] = useState({});
   const { history } = props;
 
   useEffect(() => {
@@ -26,8 +27,27 @@ function RecipeDetails(props) {
         setRecipeDetails(data.drinks[0]);
       }
     };
+    const fetchRecommendations = async () => {
+      let ENDPOINT = '';
+      if (history.location.pathname.includes('/meals')) {
+        ENDPOINT = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
+      } else {
+        ENDPOINT = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+      }
+      const result = await fetch(ENDPOINT);
+      const data = await result.json();
+      const i = 6;
+      if (history.location.pathname.includes('/meals')) {
+        setRecommendations(data.drinks.slice(0, i));
+      } else {
+        setRecommendations(data.meals.slice(0, i));
+      }
+    };
     fetchDetails(id);
+    fetchRecommendations();
   }, [id, history.location.pathname]);
+
+  console.log(recommendations);
 
   return (
     <div>
