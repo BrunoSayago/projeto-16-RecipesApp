@@ -1,0 +1,20 @@
+.recommendations {
+  display: flex;
+  flex-direction: row;
+  overflow: scroll;
+}
+
+.recommendation-card {
+  padding: 5px;
+}
+
+.recommendation-card > img {
+  width: 45vw;
+}
+
+.recommendation-card > h4 {
+  width: 135px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

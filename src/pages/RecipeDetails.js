@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import DrinkDetails from '../components/DrinkDetails';
 import MealDetails from '../components/MealDetails';
+import './RecipeDetails.css';
 // import { useHistory } from 'react-router-dom';
 
 function RecipeDetails(props) {
