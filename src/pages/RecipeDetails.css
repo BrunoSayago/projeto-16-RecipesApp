@@ -1,8 +1,8 @@
 .recommendations {
   display: flex;
   flex-direction: row;
-  overflow: scroll;
   margin-bottom: 25px;
+  overflow: scroll;
 }
 
 .recommendation-card {
@@ -21,6 +21,6 @@
 }
 
 .start-recipe-btn {
-  position: fixed;
   bottom: 0px;
+  position: fixed;
 }
