@@ -66,9 +66,11 @@ describe('Testes do componente Recipes', () => {
     userEvent.click(text);
     const kumpir = await screen.findByText('Kumpir');
     expect(kumpir).toBeInTheDocument();
+    userEvent.click(text);
+    const corba = await screen.findByText('Corba');
+    expect(corba).toBeInTheDocument();
     const allBtn = await screen.findByTestId('All-category-filter');
     userEvent.click(allBtn);
-    const corba = await screen.findByText('Corba');
     expect(corba).toBeInTheDocument();
   });
 
@@ -92,4 +94,22 @@ describe('Testes do componente Recipes', () => {
     userEvent.click(a1);
     await waitFor(() => expect(history.location.pathname).toBe('/drinks/17222'));
   });
+
+  // test('Testa a quantidade de receitas retornadas', async () => {
+  //   const { history } = renderWithRouter(
+  //     <Provider>
+  //       <App />
+  //     </Provider>,
+  //   );
+  //   jest.spyOn(global, 'fetch').mockResolvedValue({
+  //     json: jest.fn().mockResolvedValue(meals),
+  //   });
+  //   act(() => {
+  //     history.push('/meals');
+  //   });
+//
+  //   const text = await screen.findByTestId('Pasta-category-filter');
+  //   expect(text).toBeInTheDocument();
+  //   userEvent.click(text);
+  // });
 });
