@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function MealDetails(props) {
-  const { data } = props;
+  const { data, recommendations } = props;
   const {
     strMealThumb,
     strMeal,
@@ -64,12 +64,36 @@ function MealDetails(props) {
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
         allowFullScreen
       />
+      <div className="recommendations">
+        {
+          Array.isArray(recommendations)
+            ? recommendations.map((recipe, index) => (
+              <div
+                key={ index }
+                className="recommendation-card"
+                data-testid={ `${index}-recommendation-card` }
+              >
+                <h4
+                  data-testid={ `${index}-recommendation-title` }
+                >
+                  { recipe.strDrink }
+                </h4>
+                <img
+                  src={ recipe.strDrinkThumb }
+                  alt={ recipe.strDrink }
+                />
+              </div>
+            ))
+            : null
+        }
+      </div>
     </div>
   );
 }
 
 MealDetails.propTypes = {
   data: PropTypes.shape().isRequired,
+  recommendations: PropTypes.shape().isRequired,
 };
 
 export default MealDetails;

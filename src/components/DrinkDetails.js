@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function DrinkDetails(props) {
-  const { data } = props;
+  const { data, recommendations } = props;
   const {
     strDrinkThumb,
     strDrink,
@@ -48,12 +48,36 @@ function DrinkDetails(props) {
         )) }
       </ul>
       <p data-testid="instructions">{ strInstructions }</p>
+      <div className="recommendations">
+        {
+          Array.isArray(recommendations)
+            ? recommendations.map((recipe, index) => (
+              <div
+                key={ index }
+                className="recommendation-card"
+                data-testid={ `${index}-recommendation-card` }
+              >
+                <h4
+                  data-testid={ `${index}-recommendation-title` }
+                >
+                  { recipe.strMeal }
+                </h4>
+                <img
+                  src={ recipe.strMealThumb }
+                  alt={ recipe.strMeal }
+                />
+              </div>
+            ))
+            : null
+        }
+      </div>
     </div>
   );
 }
 
 DrinkDetails.propTypes = {
   data: PropTypes.shape().isRequired,
+  recommendations: PropTypes.shape().isRequired,
 };
 
 export default DrinkDetails;

@@ -47,14 +47,12 @@ function RecipeDetails(props) {
     fetchRecommendations();
   }, [id, history.location.pathname]);
 
-  console.log(recommendations);
-
   return (
     <div>
       {
         history.location.pathname.includes('/meals')
-          ? <MealDetails data={ recipeDetails } />
-          : <DrinkDetails data={ recipeDetails } />
+          ? <MealDetails data={ recipeDetails } recommendations={ recommendations } />
+          : <DrinkDetails data={ recipeDetails } recommendations={ recommendations } />
       }
     </div>
   );
