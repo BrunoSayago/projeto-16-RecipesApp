@@ -5,11 +5,7 @@ import Header from '../components/Header';
 
 function Profile() {
   const history = useHistory();
-  const tempEmail = () => {
-    const temp = {
-      email: 'email@mail.com',
-    };
-    localStorage.setItem('user', JSON.stringify(temp));
+  const getEmail = () => {
     const text = localStorage.getItem('user');
     const email = JSON.parse(text);
     return email.email;
@@ -21,7 +17,7 @@ function Profile() {
       <h1>Profile</h1>
       <div>
         <p data-testid="profile-email">
-          {tempEmail()}
+          {getEmail()}
         </p>
         <button
           type="button"
