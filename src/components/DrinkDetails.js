@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
+import IngredientsList from './IngredientsList';
 
 function DrinkDetails(props) {
   const { data, recommendations } = props;
+  const history = useHistory();
   const {
     strDrinkThumb,
     strDrink,
@@ -37,16 +40,7 @@ function DrinkDetails(props) {
       />
       <h1 data-testid="recipe-title">{ strDrink }</h1>
       <p data-testid="recipe-category">{ strAlcoholic }</p>
-      <ul>
-        { ingredients.map((ingredient, index) => (
-          <li
-            data-testid={ `${index}-ingredient-name-and-measure` }
-            key={ index }
-          >
-            { ingredient }
-          </li>
-        )) }
-      </ul>
+      <IngredientsList ingredients={ ingredients } path={ history.location.pathname } />
       <p data-testid="instructions">{ strInstructions }</p>
       <div className="recommendations">
         {
