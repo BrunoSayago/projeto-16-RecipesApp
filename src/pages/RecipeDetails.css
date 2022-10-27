@@ -1,0 +1,26 @@
+.recommendations {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 25px;
+  overflow: scroll;
+}
+
+.recommendation-card {
+  padding: 5px;
+}
+
+.recommendation-card > img {
+  width: 45vw;
+}
+
+.recommendation-card > h4 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 135px;
+}
+
+.start-recipe-btn {
+  bottom: 0;
+  position: fixed;
+}
