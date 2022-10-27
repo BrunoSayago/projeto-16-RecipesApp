@@ -48,6 +48,14 @@ function RecipeDetails(props) {
     fetchRecommendations();
   }, [id, history.location.pathname]);
 
+  const verifyDoneRecipe = () => {
+    const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes')) || [];
+    const filteredArray = doneRecipes.filter((recipe) => recipe.id === id);
+    if (filteredArray.length > 0) {
+      return true;
+    }
+  };
+
   return (
     <div>
       {
@@ -55,13 +63,19 @@ function RecipeDetails(props) {
           ? <MealDetails data={ recipeDetails } recommendations={ recommendations } />
           : <DrinkDetails data={ recipeDetails } recommendations={ recommendations } />
       }
-      <button
-        type="button"
-        className="start-recipe-btn"
-        data-testid="start-recipe-btn"
-      >
-        Start Recipe
-      </button>
+      {
+        verifyDoneRecipe() === true
+          ? null
+          : (
+            <button
+              type="button"
+              className="start-recipe-btn"
+              data-testid="start-recipe-btn"
+            >
+              Start Recipe
+            </button>
+          )
+      }
     </div>
   );
 }

@@ -54,8 +54,8 @@ function MealDetails(props) {
         )) }
       </ul>
       <p data-testid="instructions">{ strInstructions }</p>
-      <p data-testid="video">{ strYoutube }</p>
       <iframe
+        data-testid="video"
         width="320"
         height="210"
         src={ videoUrl }
