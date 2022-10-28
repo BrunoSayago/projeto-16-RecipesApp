@@ -10,13 +10,16 @@ function IngredientsList(props) {
         <ul>
           { ingredients.map((ingredient, index) => (
             <li key={ index }>
-              <input
-                type="checkbox"
+              <label
                 data-testid={ `${index}-ingredient-step` }
-                id={ `${index}-ingredient-step` }
-                name={ `${index}-ingredient-step` }
-              />
-              <label htmlFor={ `${index}-ingredient-step` }>
+                htmlFor={ `${index}-ingredient-step` }
+              >
+                <input
+                  type="checkbox"
+                  id={ `${index}-ingredient-step` }
+                  name={ `${index}-ingredient-step` }
+                />
+
                 { ingredient }
               </label>
             </li>
