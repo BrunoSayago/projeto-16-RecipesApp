@@ -7,6 +7,8 @@ import './RecipeDetails.css';
 import shareIcon from '../images/shareIcon.svg';
 import favoriteIcon from '../images/whiteHeartIcon.svg';
 import favoriteIconSelected from '../images/blackHeartIcon.svg';
+
+const copy = require('clipboard-copy');
 // import { useHistory } from 'react-router-dom';
 
 function RecipeDetails(props) {
@@ -83,8 +85,15 @@ function RecipeDetails(props) {
           ? <MealDetails data={ recipeDetails } recommendations={ recommendations } />
           : <DrinkDetails data={ recipeDetails } recommendations={ recommendations } />
       }
+      <span id="message">{null}</span>
       <div className="details-buttons">
-        <button type="button">
+        <button
+          type="button"
+          onClick={ () => {
+            copy(window.location.href);
+            document.querySelector('#message').innerHTML = 'Link copied!';
+          } }
+        >
           <img
             src={ shareIcon }
             alt="share-btn"
