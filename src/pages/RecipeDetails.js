@@ -83,6 +83,10 @@ function RecipeDetails(props) {
               type="button"
               className="start-recipe-btn"
               data-testid="start-recipe-btn"
+              onClick={ () => {
+                const url = `${history.location.pathname}/in-progress`;
+                history.push(url);
+              } }
             >
               Start Recipe
             </button>
@@ -95,6 +99,10 @@ function RecipeDetails(props) {
               type="button"
               className="start-recipe-btn"
               data-testid="start-recipe-btn"
+              onClick={ () => {
+                const url = `${history.location.pathname}/in-progress`;
+                history.push(url);
+              } }
             >
               Continue Recipe
             </button>
