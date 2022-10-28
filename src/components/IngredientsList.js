@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 function IngredientsList(props) {
   const { ingredients, path } = props;
+
   return (
     path.includes('in-progress')
       ? (

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import DrinkDetails from '../components/DrinkDetails';
 import MealDetails from '../components/MealDetails';
 import './RecipeDetails.css';
-// import { useHistory } from 'react-router-dom';
 
 function RecipeDetails(props) {
   const { id } = useParams();
@@ -71,6 +70,7 @@ function RecipeDetails(props) {
               type="button"
               className="start-recipe-btn"
               data-testid="start-recipe-btn"
+              onClick={ () => history.push(`${id}/in-progress`) }
             >
               Start Recipe
             </button>
