@@ -56,6 +56,18 @@ function RecipeDetails(props) {
     }
   };
 
+  const verifyInProgressRecipe = () => {
+    const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (inProgressRecipes !== null) {
+      const obj = history.location.pathname.includes('/meals')
+        ? inProgressRecipes.meals
+        : inProgressRecipes.drinks;
+      if (obj[id] !== undefined) {
+        return true;
+      }
+    }
+  };
+
   return (
     <div>
       {
@@ -75,6 +87,19 @@ function RecipeDetails(props) {
               Start Recipe
             </button>
           )
+      }
+      {
+        verifyInProgressRecipe() === true
+          ? (
+            <button
+              type="button"
+              className="start-recipe-btn"
+              data-testid="start-recipe-btn"
+            >
+              Continue Recipe
+            </button>
+          )
+          : null
       }
     </div>
   );
