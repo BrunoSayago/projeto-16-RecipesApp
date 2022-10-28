@@ -4,12 +4,16 @@ import PropTypes from 'prop-types';
 import DrinkDetails from '../components/DrinkDetails';
 import MealDetails from '../components/MealDetails';
 import './RecipeDetails.css';
+import shareIcon from '../images/shareIcon.svg';
+import favoriteIcon from '../images/whiteHeartIcon.svg';
+import favoriteIconSelected from '../images/blackHeartIcon.svg';
 // import { useHistory } from 'react-router-dom';
 
 function RecipeDetails(props) {
   const { id } = useParams();
   const [recipeDetails, setRecipeDetails] = useState({});
   const [recommendations, setRecommendations] = useState({});
+  const [isFavorite, setIsFavorite] = useState(false);
   const { history } = props;
 
   useEffect(() => {
@@ -68,6 +72,10 @@ function RecipeDetails(props) {
     }
   };
 
+  useEffect(() => {
+    setIsFavorite(true);
+  }, []);
+
   return (
     <div>
       {
@@ -75,6 +83,24 @@ function RecipeDetails(props) {
           ? <MealDetails data={ recipeDetails } recommendations={ recommendations } />
           : <DrinkDetails data={ recipeDetails } recommendations={ recommendations } />
       }
+      <div className="details-buttons">
+        <button type="button">
+          <img
+            src={ shareIcon }
+            alt="share-btn"
+            data-testid="share-btn"
+          />
+        </button>
+        <button type="button">
+          <img
+            src={
+              isFavorite ? favoriteIconSelected : favoriteIcon
+            }
+            alt="favorite-btn"
+            data-testid="favorite-btn"
+          />
+        </button>
+      </div>
       {
         verifyDoneRecipe() === true
           ? null
