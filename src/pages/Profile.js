@@ -8,6 +8,9 @@ function Profile() {
   const getEmail = () => {
     const text = localStorage.getItem('user');
     const email = JSON.parse(text);
+    if (email === null) {
+      return 'email@mail.com';
+    }
     return email.email;
   };
 
