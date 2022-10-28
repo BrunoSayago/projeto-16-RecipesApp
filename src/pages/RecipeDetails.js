@@ -75,8 +75,35 @@ function RecipeDetails(props) {
   };
 
   useEffect(() => {
-    setIsFavorite(true);
-  }, []);
+    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+    const filterFav = favoriteRecipes.filter((favorite) => favorite.id === id);
+    if (filterFav.length > 0) {
+      setIsFavorite(true);
+    }
+  }, [id]);
+
+  const favoriteRecipe = () => {
+    const type = history.location.pathname.includes('/meals') ? 'meal' : 'drink';
+    const recipe = {
+      id,
+      type,
+      nationality: type === 'meal' ? recipeDetails.strArea : '',
+      category: recipeDetails.strCategory,
+      alcoholicOrNot: type === 'drink' ? recipeDetails.strAlcoholic : '',
+      name: type === 'meal' ? recipeDetails.strMeal : recipeDetails.strDrink,
+      image: type === 'meal' ? recipeDetails.strMealThumb : recipeDetails.strDrinkThumb,
+    };
+    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+    const filterFav = favoriteRecipes.filter((favorite) => favorite.id === id);
+    if (filterFav.length > 0) {
+      const filtered = favoriteRecipes.filter((r) => r.id !== filterFav[0].id);
+      localStorage.setItem('favoriteRecipes', JSON.stringify(filtered));
+    } else {
+      favoriteRecipes.push(recipe);
+      localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
+    }
+    setIsFavorite(!isFavorite);
+  };
 
   return (
     <div>
@@ -100,7 +127,10 @@ function RecipeDetails(props) {
             data-testid="share-btn"
           />
         </button>
-        <button type="button">
+        <button
+          type="button"
+          onClick={ favoriteRecipe }
+        >
           <img
             src={
               isFavorite ? favoriteIconSelected : favoriteIcon
