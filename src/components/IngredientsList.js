@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../css/ingredientsList.css';
 
 function IngredientsList(props) {
   const { ingredients, path } = props;
@@ -12,14 +13,14 @@ function IngredientsList(props) {
             <li key={ index }>
               <label
                 data-testid={ `${index}-ingredient-step` }
-                htmlFor={ `${index}-ingredient-step` }
+                htmlFor="ingredient"
               >
                 <input
+                  className="ingredients-list"
                   type="checkbox"
-                  id={ `${index}-ingredient-step` }
+                  id="ingredient"
                   name={ `${index}-ingredient-step` }
                 />
-
                 { ingredient }
               </label>
             </li>
