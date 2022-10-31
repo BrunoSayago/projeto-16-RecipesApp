@@ -1,26 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../css/ingredientsList.css';
 
 function IngredientsList(props) {
   const { ingredients, path } = props;
+
   return (
     path.includes('in-progress')
       ? (
-        <ul>
+        <div>
           { ingredients.map((ingredient, index) => (
-            <li key={ index }>
+            <label
+              key={ index }
+              data-testid={ `${index}-ingredient-step` }
+              htmlFor="ingredient"
+            >
               <input
                 type="checkbox"
-                data-testid={ `${index}-ingredient-step` }
-                id={ `${index}-ingredient-step` }
+                className="ingredients-list"
                 name={ `${index}-ingredient-step` }
               />
-              <label htmlFor={ `${index}-ingredient-step` }>
-                { ingredient }
-              </label>
-            </li>
+              <span>{ ingredient }</span>
+
+            </label>
           )) }
-        </ul>
+        </div>
+
       )
       : (
         <ul>

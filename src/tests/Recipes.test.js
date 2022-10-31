@@ -95,21 +95,20 @@ describe('Testes do componente Recipes', () => {
     await waitFor(() => expect(history.location.pathname).toBe('/drinks/17222'));
   });
 
-  // test('Testa a quantidade de receitas retornadas', async () => {
-  //   const { history } = renderWithRouter(
-  //     <Provider>
-  //       <App />
-  //     </Provider>,
-  //   );
-  //   jest.spyOn(global, 'fetch').mockResolvedValue({
-  //     json: jest.fn().mockResolvedValue(meals),
-  //   });
-  //   act(() => {
-  //     history.push('/meals');
-  //   });
-//
-  //   const text = await screen.findByTestId('Pasta-category-filter');
-  //   expect(text).toBeInTheDocument();
-  //   userEvent.click(text);
-  // });
+  test('Testa a quantidade de receitas retornadas', async () => {
+    const { history } = renderWithRouter(
+      <Provider>
+        <App />
+      </Provider>,
+    );
+    jest.spyOn(global, 'fetch').mockResolvedValue({
+      json: jest.fn().mockResolvedValue(meals),
+    });
+    act(() => {
+      history.push('/meals');
+    });
+    const text = await screen.findByTestId('Pasta-category-filter');
+    expect(text).toBeInTheDocument();
+    userEvent.click(text);
+  });
 });
