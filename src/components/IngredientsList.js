@@ -8,27 +8,24 @@ function IngredientsList(props) {
   return (
     path.includes('in-progress')
       ? (
-        <ul>
+        <div>
           { ingredients.map((ingredient, index) => (
-            <li
+            <label
               key={ index }
               data-testid={ `${index}-ingredient-step` }
+              htmlFor="ingredient"
             >
               <input
                 type="checkbox"
-                id="ingredient"
                 className="ingredients-list"
                 name={ `${index}-ingredient-step` }
               />
-              <label
-                className="ingredients-list"
-                htmlFor="ingredient"
-              >
-                { ingredient }
-              </label>
-            </li>
+              <span>{ ingredient }</span>
+
+            </label>
           )) }
-        </ul>
+        </div>
+
       )
       : (
         <ul>
