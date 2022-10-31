@@ -7,6 +7,7 @@ import './RecipeDetails.css';
 import shareIcon from '../images/shareIcon.svg';
 import favoriteIcon from '../images/whiteHeartIcon.svg';
 import favoriteIconSelected from '../images/blackHeartIcon.svg';
+
 const copy = require('clipboard-copy');
 // import { useHistory } from 'react-router-dom';
 
