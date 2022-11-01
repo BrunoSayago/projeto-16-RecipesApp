@@ -8,7 +8,9 @@ function Recipes() {
   const { categoriaEscolhida,
     setCategoriaEscolhida,
     setCategoriaFiltrada,
-    categoriaFiltrada } = useContext(Context);
+    categoriaFiltrada,
+    retornoSearch,
+  } = useContext(Context);
 
   const END_POINT_COMIDA = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
   const END_POINT_BEBIDA = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
@@ -17,6 +19,7 @@ function Recipes() {
 
   const history = useHistory();
   const { pathname } = history.location;
+  const MAX_LENGTH = 12;
 
   useEffect(() => {
     const fetchReceitas = async () => {
@@ -25,8 +28,7 @@ function Recipes() {
       const results = await data.json();
       const { meals, drinks } = results;
       const tipo = meals || drinks;
-      const MAX_POSITION = 12;
-      setListaReceitas(tipo.slice(0, MAX_POSITION));
+      setListaReceitas(tipo.slice(0, MAX_LENGTH));
     };
     fetchReceitas();
   }, [pathname]);
@@ -35,6 +37,7 @@ function Recipes() {
     const fetchCategorias = async () => {
       const sabor = pathname === '/meals' ? END_POINT_CAT_COMIDA : END_POINT_CAT_BEBIDA;
       const data = await fetch(sabor);
+      // console.log(data);
       const results = await data.json();
       const { meals, drinks } = results;
       const tipo = meals || drinks;
@@ -57,6 +60,72 @@ function Recipes() {
     setCategoriaFiltrada('');
   };
 
+  if (retornoSearch.length > 0) {
+    return (
+      <div>
+        <div>
+          {
+            listaCategorias.map((categoria) => (
+              <button
+                type="button"
+                data-testid={ `${categoria.strCategory}-category-filter` }
+                key={ `${categoria.strCategory}-category-filter` }
+                onClick={ handleFilterCategory }
+              >
+                {categoria.strCategory}
+              </button>
+            ))
+          }
+          <button
+            type="button"
+            data-testid="All-category-filter"
+            onClick={ handleAllButton }
+          >
+            All
+          </button>
+        </div>
+
+        <div>
+          {
+            retornoSearch
+              .slice(0, MAX_LENGTH)
+              .map((receita, index) => {
+                const objNomes = pathname === '/meals' ? {
+                  id: 'idMeal',
+                  nome: 'strMeal',
+                  imagem: 'strMealThumb',
+                } : {
+                  id: 'idDrink',
+                  nome: 'strDrink',
+                  imagem: 'strDrinkThumb',
+                };
+                return (
+                  <Link
+                    key={ receita[objNomes.id] }
+                    to={ `${pathname}/${receita[objNomes.id]}` }
+                  >
+                    <div
+                      data-testid={ `${index}-recipe-card` }
+
+                    >
+
+                      <p data-testid={ `${index}-card-name` }>{receita[objNomes.nome]}</p>
+                      <img
+                        data-testid={ `${index}-card-img` }
+                        className="card-img"
+                        src={ receita[objNomes.imagem] }
+                        alt={ `${receita.strMeal} imagem` }
+                      />
+                    </div>
+                  </Link>
+                );
+              })
+          }
+        </div>
+
+      </div>
+    );
+  }
   return (
     <div>
       <div>
