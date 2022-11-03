@@ -8,6 +8,8 @@ function Provider(props) {
   const [categoriaEscolhida, setCategoriaEscolhida] = useState('');
   const [categoriaFiltrada, setCategoriaFiltrada] = useState('');
   const [recipeDetails, setRecipeDetails] = useState({});
+  const [isSearching, setIsSearching] = useState(false);
+  const [retornoSearch, setRetornoSearch] = useState([]);
   const history = useHistory();
   const { pathname } = history.location;
   useEffect(() => {
@@ -29,13 +31,17 @@ function Provider(props) {
   }, [categoriaEscolhida, pathname]);
 
   const value = useMemo(() => ({
+    isSearching,
+    setIsSearching,
+    retornoSearch,
+    setRetornoSearch,
     categoriaEscolhida,
     setCategoriaEscolhida,
     categoriaFiltrada,
     setCategoriaFiltrada,
     recipeDetails,
     setRecipeDetails,
-  }), [categoriaEscolhida, categoriaFiltrada, recipeDetails]);
+  }), [categoriaEscolhida, isSearching, retornoSearch, categoriaFiltrada, recipeDetails]);
 
   return (
     <Context.Provider value={ value }>

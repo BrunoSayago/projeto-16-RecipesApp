@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
+import SearchBar from './SearchBar';
+import Context from '../context/Context';
 
 function Header() {
   const history = useHistory();
   const { pathname } = history.location;
+  const { isSearching, setIsSearching } = useContext(Context);
 
   const title = () => {
     switch (pathname) {
@@ -47,13 +50,18 @@ function Header() {
       </button>
       { searchItem()
           && (
-            <button type="button" onClick={ () => setSearchInput(!searchInput) }>
+            <button type="button" onClick={ () => setIsSearching(!isSearching) }>
               <img
                 src={ searchIcon }
                 alt="search"
                 data-testid="search-top-btn"
               />
             </button>)}
+
+      {
+        isSearching && <SearchBar />
+      }
+
     </header>
   );
 }
