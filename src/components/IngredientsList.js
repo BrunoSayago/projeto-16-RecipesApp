@@ -24,6 +24,12 @@ function IngredientsList(props) {
 
             </label>
           )) }
+          <button
+            type="button"
+            disabled
+          >
+            Finish Recipe
+          </button>
         </div>
 
       )

@@ -1,21 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import DrinkDetails from '../components/DrinkDetails';
 import MealDetails from '../components/MealDetails';
+import Context from '../context/Context';
 import './RecipeDetails.css';
 import shareIcon from '../images/shareIcon.svg';
 import favoriteIcon from '../images/whiteHeartIcon.svg';
 import favoriteIconSelected from '../images/blackHeartIcon.svg';
 
 const copy = require('clipboard-copy');
-// import { useHistory } from 'react-router-dom';
 
 function RecipeDetails(props) {
   const { id } = useParams();
-  const [recipeDetails, setRecipeDetails] = useState({});
   const [recommendations, setRecommendations] = useState({});
   const [isFavorite, setIsFavorite] = useState(false);
+  const { recipeDetails,
+    setRecipeDetails } = useContext(Context);
   const { history } = props;
 
   useEffect(() => {
@@ -52,7 +53,7 @@ function RecipeDetails(props) {
     };
     fetchDetails(id);
     fetchRecommendations();
-  }, [id, history.location.pathname]);
+  }, [id, history.location.pathname, setRecipeDetails]);
 
   const verifyDoneRecipe = () => {
     const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes')) || [];

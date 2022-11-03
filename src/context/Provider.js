@@ -7,6 +7,7 @@ function Provider(props) {
   const { children } = props;
   const [categoriaEscolhida, setCategoriaEscolhida] = useState('');
   const [categoriaFiltrada, setCategoriaFiltrada] = useState('');
+  const [recipeDetails, setRecipeDetails] = useState({});
   const history = useHistory();
   const { pathname } = history.location;
   useEffect(() => {
@@ -32,7 +33,9 @@ function Provider(props) {
     setCategoriaEscolhida,
     categoriaFiltrada,
     setCategoriaFiltrada,
-  }), [categoriaEscolhida, categoriaFiltrada]);
+    recipeDetails,
+    setRecipeDetails,
+  }), [categoriaEscolhida, categoriaFiltrada, recipeDetails]);
 
   return (
     <Context.Provider value={ value }>
