@@ -3,6 +3,8 @@ import { useHistory, useParams } from 'react-router-dom';
 import IngredientsList from '../components/IngredientsList';
 import MealInProgress from '../components/MealInProgress';
 import DrinkInProgress from '../components/DrinkInProgress';
+import fetchDetails from './services/fetchDetails';
+import getIngredients from './services/getIngredients';
 
 function RecipeInProgress() {
   const history = useHistory();
@@ -10,41 +12,12 @@ function RecipeInProgress() {
   const [ingredients, setIngredients] = useState([]);
 
   useEffect(() => {
-    const fetchDetails = async (recipeId) => {
-      let ENDPOINT = '';
-      if (history.location.pathname.includes('/meals')) {
-        ENDPOINT = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`;
-      } else {
-        ENDPOINT = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${recipeId}`;
-      }
-      const result = await fetch(ENDPOINT);
-      const data = await result.json();
-      if (history.location.pathname.includes('/meals')) {
-        setIngredients(data.meals[0]);
-      } else {
-        setIngredients(data.drinks[0]);
-      }
-    };
-    fetchDetails(id);
-  }, [id, history.location.pathname]);
+    fetchDetails(id, history, setIngredients);
+  }, [id, history]);
 
   const setItems = [];
-  const getIngredients = () => {
-    const ingrArray = [];
-    const measureArray = [];
-    Object.getOwnPropertyNames(ingredients).forEach((key) => {
-      if (key.includes('strIngredient') && ingredients[key]
-      !== '' && ingredients[key] !== null) {
-        ingrArray.push(ingredients[key]);
-      } else if (key.includes('strMeasure') && ingredients[key]
-      !== '' && ingredients[key] !== null) {
-        measureArray.push(ingredients[key]);
-      }
-    });
-    ingrArray.forEach((ingr, i) => setItems.push(`${measureArray[i]} ${ingr}`));
-  };
 
-  getIngredients();
+  getIngredients(ingredients, setItems);
 
   return (
     <div>
