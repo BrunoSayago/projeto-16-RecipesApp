@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import finishRecipe from '../pages/services/finishRecipe';
 import '../css/ingredientsList.css';
 
 function IngredientsList(props) {
-  const { ingredients, path } = props;
+  const { ingredients, path, data } = props;
   const [disableBtn, setDisableBtn] = useState(true);
   const [checks, setChecked] = useState(0);
   const history = useHistory();
@@ -18,10 +19,6 @@ function IngredientsList(props) {
     }
   }, [ingredients, checks]);
 
-  const finishRecipe = () => {
-    history.push('/done-recipes');
-  };
-
   const handleCheck = (event) => {
     if (event.target.checked === true) {
       setChecked(checks + 1);
@@ -34,6 +31,7 @@ function IngredientsList(props) {
     path.includes('in-progress')
       ? (
         <div>
+          {console.log(data)}
           { ingredients.map((ingredient, index) => (
             <label
               key={ index }
@@ -54,7 +52,7 @@ function IngredientsList(props) {
             type="button"
             data-testid="finish-recipe-btn"
             disabled={ disableBtn }
-            onClick={ finishRecipe }
+            onClick={ () => finishRecipe(history, data) }
           >
             Finish Recipe
           </button>
@@ -79,6 +77,7 @@ function IngredientsList(props) {
 IngredientsList.propTypes = {
   ingredients: PropTypes.shape().isRequired,
   path: PropTypes.string.isRequired,
+  data: PropTypes.shape().isRequired,
 };
 
 export default IngredientsList;

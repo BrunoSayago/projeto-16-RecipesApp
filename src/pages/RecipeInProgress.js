@@ -54,7 +54,11 @@ function RecipeInProgress() {
           ? <MealInProgress data={ ingredients } />
           : <DrinkInProgress data={ ingredients } />
       }
-      <IngredientsList ingredients={ setItems } path={ history.location.pathname } />
+      <IngredientsList
+        data={ ingredients }
+        ingredients={ setItems }
+        path={ history.location.pathname }
+      />
     </div>
   );
 }

@@ -22,7 +22,6 @@ function MealInProgress(props) {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const clickShare = () => {
-    console.log(data);
     clipboardCopy(`http://localhost:3000/${splitedPathname[1]}/${splitedPathname[2]}`);
     setShare(true);
   };
