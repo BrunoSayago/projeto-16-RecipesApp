@@ -7,6 +7,7 @@ function Provider(props) {
   const { children } = props;
   const [categoriaEscolhida, setCategoriaEscolhida] = useState('');
   const [categoriaFiltrada, setCategoriaFiltrada] = useState('');
+  const [recipeDetails, setRecipeDetails] = useState({});
   const [isSearching, setIsSearching] = useState(false);
   const [retornoSearch, setRetornoSearch] = useState([]);
   const history = useHistory();
@@ -38,7 +39,9 @@ function Provider(props) {
     setCategoriaEscolhida,
     categoriaFiltrada,
     setCategoriaFiltrada,
-  }), [categoriaEscolhida, isSearching, retornoSearch, categoriaFiltrada]);
+    recipeDetails,
+    setRecipeDetails,
+  }), [categoriaEscolhida, isSearching, retornoSearch, categoriaFiltrada, recipeDetails]);
 
   return (
     <Context.Provider value={ value }>
