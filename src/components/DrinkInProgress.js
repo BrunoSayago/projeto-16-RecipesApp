@@ -91,12 +91,6 @@ function DrinkInProgress(props) {
           data-testid="favorite-btn"
         />
       </button>
-      <button
-        type="button"
-        data-testid="finish-recipe-btn"
-      >
-        Finalizar
-      </button>
       {shareClick && <p>Link copied!</p>}
     </div>
   );
