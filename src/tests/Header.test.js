@@ -6,8 +6,8 @@ import App from '../App';
 import Provider from '../context/Provider';
 import { renderWithRouter } from './helpers/renderWith';
 
-describe('Testa o componente Footer', () => {
-  test('Testa se os clicks funcionam', async () => {
+describe('Testa o componente Header', () => {
+  test('Testa o header', async () => {
     const { history } = renderWithRouter(
       <Provider>
         <App />
@@ -17,12 +17,39 @@ describe('Testa o componente Footer', () => {
       history.push('/meals');
     });
 
-    const drinksBtn = screen.getByTestId('drinks-bottom-btn');
-    userEvent.click(drinksBtn);
-    await waitFor(() => expect(history.location.pathname).toBe('/drinks'));
+    const searchBtn = screen.getByTestId('search-top-btn');
+    userEvent.click(searchBtn);
+    const searchInput = screen.getByTestId('search-input');
+    await waitFor(() => expect(searchInput).toBeInTheDocument());
 
     const mealsBtn = screen.getByTestId('meals-bottom-btn');
     userEvent.click(mealsBtn);
     await waitFor(() => expect(history.location.pathname).toBe('/meals'));
+  });
+
+  test('Testa o header no done-recipes', async () => {
+    const { history } = renderWithRouter(
+      <Provider>
+        <App />
+      </Provider>,
+    );
+    act(() => {
+      history.push('/done-recipes');
+    });
+    const searchBtn = screen.getByTestId('search-top-btn');
+    expect(searchBtn).not.toBeInTheDocument();
+  });
+  test('Testa o header no done-recipes', async () => {
+    const { history } = renderWithRouter(
+      <Provider>
+        <App />
+      </Provider>,
+    );
+    act(() => {
+      history.push('/favorite-recipes');
+    });
+    const profileBtn = screen.getByTestId('profile-top-btn');
+    userEvent.click(profileBtn);
+    expect(history.location.pathname).toBe('/profile');
   });
 });
