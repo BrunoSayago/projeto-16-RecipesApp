@@ -20,10 +20,14 @@ function IngredientsList(props) {
   }, [ingredients, checks]);
 
   const handleCheck = (event) => {
+    const respcCheck = event.target;
+    const respcLabel = respcCheck.parentElement;
     if (event.target.checked === true) {
       setChecked(checks + 1);
+      respcLabel.classList.add('ing-risk');
     } else {
       setChecked(checks - 1);
+      respcLabel.classList.remove('ing-risk');
     }
   };
 
