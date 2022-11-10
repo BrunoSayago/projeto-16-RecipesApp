@@ -1,5 +1,4 @@
 import React from 'react';
-import { screen, waitFor } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 // import userEvent from '@testing-library/user-event';
 import App from '../App';
