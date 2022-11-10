@@ -9,9 +9,24 @@ function DoneRecipes() {
     <div>
       <Header />
       <div>
-        <button type="button" data-testid="filter-by-all-btn">All</button>
-        <button type="button" data-testid="filter-by-meal-btn">Meal</button>
-        <button type="button" data-testid="filter-by-drink-btn">Drinks</button>
+        <button
+          type="button"
+          data-testid="filter-by-all-btn"
+        >
+          All
+        </button>
+        <button
+          type="button"
+          data-testid="filter-by-meal-btn"
+        >
+          Meal
+        </button>
+        <button
+          type="button"
+          data-testid="filter-by-drink-btn"
+        >
+          Drinks
+        </button>
       </div>
       {doneRecipes && doneRecipes.map((item, index) => (
         <div key={ index }>
