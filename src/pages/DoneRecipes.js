@@ -10,7 +10,7 @@ function DoneRecipes() {
       <Header />
       <div>
         <button type="button" data-testid="filter-by-all-btn">All</button>
-        <button type="button" data-testid="filter-by-food-btn">Food</button>
+        <button type="button" data-testid="filter-by-meal-btn">Meal</button>
         <button type="button" data-testid="filter-by-drink-btn">Drinks</button>
       </div>
       {doneRecipes && doneRecipes.map((item, index) => (
@@ -44,10 +44,10 @@ function DoneRecipes() {
             src={ shareIcon }
             alt=""
           />
-          {item.tags.map((tag, i) => (
+          {item.tags.map((tag) => (
             <p
-              key={ i }
-              data-testid={ `${i}-${tag}-horizontal-tag` }
+              key={ index }
+              data-testid={ `${index}-${tag}-horizontal-tag` }
             >
               {tag}
             </p>
