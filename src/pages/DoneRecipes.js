@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
-// import { useHistory } from 'react-router-dom';
+import shareIcon from '../images/shareIcon.svg';
 
 function DoneRecipes() {
   const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes')) || [];
@@ -27,7 +27,6 @@ function DoneRecipes() {
                 data-testid={ `${index}-horizontal-top-text` }
               >
                 {`${item.nationality} - ${item.category}`}
-
               </p>
             ) : (
               <p
@@ -37,6 +36,22 @@ function DoneRecipes() {
 
               </p>
             )}
+          <p data-testid={ `${index}-horizontal-name` }>{item.name}</p>
+          <p data-testid={ `${index}-horizontal-done-date` }>{item.doneDate}</p>
+          <input
+            type="image"
+            data-testid={ `${index}-horizontal-share-btn` }
+            src={ shareIcon }
+            alt=""
+          />
+          {item.tags.map((tag, i) => (
+            <p
+              key={ i }
+              data-testid={ `${i}-${tag}-horizontal-tag` }
+            >
+              {tag}
+            </p>
+          ))}
         </div>
       ))}
     </div>
