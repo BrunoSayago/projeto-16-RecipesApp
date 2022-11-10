@@ -6,7 +6,7 @@ function DoneRecipes() {
   return (
     <div>
       <Header />
-      <h1>Done Recipes</h1>
+      <h1>Done Recips</h1>
     </div>
   );
 }
