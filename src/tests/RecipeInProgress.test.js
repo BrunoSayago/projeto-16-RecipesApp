@@ -20,9 +20,6 @@ describe('Testes da Tela de progresso', () => {
 
     const image = screen.getByTestId('recipe-photo');
     const ingredient = screen.getByTestId('0-ingredient-step');
-    // const category = screen.getByTestId('recipe-category');
-    // const instructions = screen.getByTestId('instructions');
-    // const video = screen.getByTestId('video');
 
     await waitFor(() => expect(image).toBeInTheDocument());
     await waitFor(() => expect(ingredient).toBeInTheDocument());

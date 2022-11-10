@@ -1,12 +1,59 @@
 import React from 'react';
 import Header from '../components/Header';
-// import { useHistory } from 'react-router-dom';
+import shareIcon from '../images/shareIcon.svg';
 
 function DoneRecipes() {
+  const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes')) || [];
+
   return (
     <div>
       <Header />
-      <h1>Done Recipes</h1>
+      <div>
+        <button type="button" data-testid="filter-by-all-btn">All</button>
+        <button type="button" data-testid="filter-by-meal-btn">Meal</button>
+        <button type="button" data-testid="filter-by-drink-btn">Drinks</button>
+      </div>
+      {doneRecipes && doneRecipes.map((item, index) => (
+        <div key={ index }>
+          <img
+            width="100px"
+            data-testid={ `${index}-horizontal-image` }
+            src={ item.image }
+            alt="item"
+          />
+          {item.type === 'meal'
+            ? (
+              <p
+                data-testid={ `${index}-horizontal-top-text` }
+              >
+                {`${item.nationality} - ${item.category}`}
+              </p>
+            ) : (
+              <p
+                data-testid={ `${index}-horizontal-top-text` }
+              >
+                {`${item.alcoholicOrNot}`}
+
+              </p>
+            )}
+          <p data-testid={ `${index}-horizontal-name` }>{item.name}</p>
+          <p data-testid={ `${index}-horizontal-done-date` }>{item.doneDate}</p>
+          <input
+            type="image"
+            data-testid={ `${index}-horizontal-share-btn` }
+            src={ shareIcon }
+            alt=""
+          />
+          {item.tags.map((tag) => (
+            <p
+              key={ index }
+              data-testid={ `${index}-${tag}-horizontal-tag` }
+            >
+              {tag}
+            </p>
+          ))}
+        </div>
+      ))}
     </div>
   );
 }
