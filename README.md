@@ -32,7 +32,44 @@ O projeto utilizou o context API e alguns React Hooks para o desenvolvimento da 
 Abaixo estão alguns GIFs que mostram a aplicação funcionando (vale lembrar que o objetivo principal do projeto era desenvolver a aplicação com foco na arquitetura do site utilizando React Hooks e Context API, e, por isso, não foi desenvolvido o CSS, portanto a aplicação está sem estilização).
 <br/>
 
-![Screenshot](screenshotTrivia.gif)
+Página inicial, de login, e sendo redirecionado para a página de receitas. 
+
+<br/>
+
+![Screenshot](screenshotLogin.gif)
+
+<br/>
+
+Mostrando a página de receitas (comidas), mostrando a filtragem, clicando em uma receita, que redireciona para a página de detalhes, e mostrando a página de detalhes.
+
+<br/>
+
+![Screenshot](screenshotMealsToDetails.gif)
+
+<br/>
+
+Na página de detalhes, realizando algumas ações, como: copiar link da receita, favoritar a receita, e iniciá-la, redirecionando para a página de receita em progresso, onde é possível fazer uma checklist dos ingredientes.
+
+<br/>
+
+![Screenshot](screenshotDetailsToProgress.gif)
+
+<br/>
+
+Na página de receitas inicial, clicando botão que altera para mostrar as receitas de bebidas. Depois, filtra-se as bebidas, seleciona uma delas, favorita e inicia. 
+
+<br/>
+
+![Screenshot](screenshotMealsToDrinks.gif)
+
+<br/>
+
+
+Na página de receitas inicial, clicando botão de perfil, que redireciona para a página de perfil. Depois, clica botão para visualizar as receitas favoritadas. Volta para a página de perfil e clica em logout, onde redireciona para a página de login.
+
+<br/>
+
+![Screenshot](screenshotProfile.gif)
 
 <br/>
 
