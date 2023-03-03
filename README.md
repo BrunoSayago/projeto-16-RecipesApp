@@ -1,4 +1,4 @@
-# Projeto 14 - Trivia Game
+# Projeto 16 - Recipes App
 
 Oi. Este foi um dos projetos que eu fiz durante meu curso na Trybe. Confira os detalhes dele abaixo.
 
@@ -6,22 +6,20 @@ Oi. Este foi um dos projetos que eu fiz durante meu curso na Trybe. Confira os d
 
 
 ## Nome do Projeto
-Trivia Game (Jogo de Trivia)
+Recipes App (App de Receitas)
 
 ## Linguagens e Ferramentas Utilizadas
 
  - JavaScript
  - HTML
- - CSS
  - Kanban
  - [Biblioteca React](https://pt-br.reactjs.org/)
  - [React Router](https://reactrouter.com/en/main)
- - [Redux](https://redux.js.org/)
- - [React Redux](https://react-redux.js.org/)
+ - Context API e React Hooks
 
 
 ## Objetivos do Projeto
-Neste projeto foi desenvolvida uma aplicação de jogo de trivia (perguntas e respostas). Ele foi realizado em grupo, e junto comigo realizaram o projeto: [Lizia Towata](https://github.com/LiziaTowata), [Nelson Filho](https://github.com/NelsonFilho1984), [Robson Silva](https://github.com/rm-l), e [Elivelton Machado](https://github.com/El1v). A organização do grupo foi feita por meio do uso da metodologia ágil Kanban, diagramada em um quadro na ferramenta [Trello](https://trello.com/).
+Neste projeto foi desenvolvida uma aplicação de app de receitas. Ele foi realizado em grupo, e junto comigo realizaram o projeto: [Matheus França](https://github.com/matfbs), [Petrson Paganelli](https://github.com/Peterson-Paganelli) e [Stenio Santos](https://github.com/StenioSantos97). A organização do grupo foi feita por meio do uso da metodologia ágil Kanban, diagramada em um quadro na ferramenta [Trello](https://trello.com/).
 
 <br/>
 
